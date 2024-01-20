@@ -1,0 +1,50 @@
+name: Build and Release WinForms App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Build WinForms App
+      run: msbuild /p:Configuration=Release
+
+    - name: Create Standalone Executable
+      run: |
+        # Add commands to create standalone executable (e.g., publish or build command)
+        # Replace the following line with the actual command for creating the standalone executable
+        dotnet publish -c Release -r win10-x64 -o ./abc
+
+    - name: Zip Artifacts
+      uses: montudor/action-zip@v0.4.0
+      with:
+        files: ./abc
+        output: WinFormsApp.zip
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+        body: |
+          Changes in this release.
+
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./WinFormsApp.zip
+        asset_name: WinFormsApp.zip
+        asset_content_type: application/zip
