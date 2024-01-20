@@ -17,9 +17,12 @@ jobs:
       run: |
         dotnet publish -c Release -r win10-x64 -o ./output
 
-    - name: Zip artifact for deployment
-      run: zip WinFormsApp.zip ./output -r
-      
+    - name: Zip Artifacts
+      run: |
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output', 'WinFormsApp.zip')
+        
+    
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
