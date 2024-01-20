@@ -1,0 +1,157 @@
+html, body {
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+}
+
+#viewer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+#attrprop-container {
+    overflow: auto;
+}
+
+#modelTree {
+    overflow: auto;
+    max-height: 40%;
+    padding: 20px;
+}
+
+#viewer-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#attsTitleDiv {
+    text-align: center;
+    padding-top: 20px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.split {
+    float: left;
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+    .split > div {
+        float: left;
+        height: 100%;
+    }
+
+.gutter {
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+    .gutter.gutter-horizontal {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+        cursor: col-resize;
+    }
+
+#attrprop {
+    user-select: text;
+    padding-top: 5px;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    #attrprop td, th {
+        /* border: outset 1px black;*/
+        max-width: 185px;
+        overflow: hidden;
+        padding: 3px;
+    }
+
+    #attrprop th {
+        background-color: lightgray;
+    }
+
+#viewer-container svg {
+    width: 25px;
+    height: 25px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Remove default bullets */
+ul, #myUL {
+    list-style-type: none;
+}
+
+/* Remove margins and padding from the parent ul */
+#myUL {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the caret/arrow */
+.caret {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+}
+
+    /* Create the caret/arrow with a unicode, and style it */
+    .caret::before {
+        content: "\25B6";
+        color: black;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+    transform: rotate(90deg);
+}
+
+/* Hide the nested list */
+.nested {
+    display: none;
+}
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
+    display: block;
+}
+
+#clippingopt input, label {
+    display: inline-block;
+    margin: 0 3px;
+}
+
+#clippingopt input {
+    width: 50px;
+}
+
+#clippingopt {
+    font-size: 8pt;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    padding: 5px;
+    z-index: 200;
+    border: 1px solid #ddd;
+    background: #e9e9e9;
+    color: #333;
+}
