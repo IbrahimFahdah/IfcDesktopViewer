@@ -1,0 +1,46 @@
+name: Build and Release WinForms App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Create Standalone Executable
+      run: |
+        dotnet publish -c Release -r win10-x64 -o ./output
+
+    - name: Zip Artifacts
+      run: |
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output', 'WinFormsApp.zip')
+        
+ 
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+        body: |
+          Changes in this release.
+
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token    
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./WinFormsApp.zip
+        asset_name: WinFormsApp.zip
+        asset_content_type: application/zip
