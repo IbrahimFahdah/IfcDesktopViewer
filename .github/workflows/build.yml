@@ -13,16 +13,8 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    - name: Build WinForms App
-      run: msbuild /p:Configuration=Release
-
     - name: Create Standalone Executable
       run: |
-        # Add commands to create standalone executable (e.g., publish or build command)
-        # Replace the following line with the actual command for creating the standalone executable
         dotnet publish -c Release -r win10-x64 -o ./abc
 
     - name: Zip Artifacts
