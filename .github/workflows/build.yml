@@ -22,15 +22,15 @@ jobs:
         Add-Type -AssemblyName System.IO.Compression.FileSystem
         [System.IO.Compression.ZipFile]::CreateFromDirectory('./output', 'WinFormsApp.zip')
         
-    
+ 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.ReleaseToken }} # This token is provided by Actions, you do not need to create your own token
       with:
-        token: ${{ secrets.ReleaseToken }}
         tag_name: v${{ github.run_number }}
         release_name: Release ${{ github.run_number }}
-        
         body: |
           Changes in this release.
 
