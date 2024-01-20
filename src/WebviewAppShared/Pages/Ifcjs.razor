@@ -1,0 +1,127 @@
+﻿@page "/ifcjs"
+@page "/"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject ShareState ShareState
+@using System.ComponentModel;
+@implements IDisposable
+
+<div id="viewer-container"></div>
+
+<div id="header">
+    <a class="title button" id="openFileLink" title="Open IFC Model">Load Model</a>
+    <div id="toolbar">
+        <button id="picker-button" class="button" title="Highlight Elements">
+            <img src="_content/WebviewAppShared/ifcjs/images/pointer.svg" alt="">
+        </button>
+        <button id="model-tree-button" class="button" title="Model Tree">
+            <img src="_content/WebviewAppShared/ifcjs/images/modeltree.svg" alt="">
+        </button>
+        <button id="first-person-button" class="button" title="First Person Camera">
+            <img src="_content/WebviewAppShared/ifcjs/images/fps.svg" alt="">
+        </button>
+        <button id="clipper-button" class="button" title="Section Plane">
+            <img src="_content/WebviewAppShared/ifcjs/images/clipper.svg" alt="">
+        </button>
+        <button id="dimension-button" class="button" title="Dimension">
+            <img src="_content/WebviewAppShared/ifcjs/images/ruler.svg" alt="">
+        </button>
+        <button id="floorplan-button" class="button" title="Floor Plan View">
+            <img src="_content/WebviewAppShared/ifcjs/images/floorplan.svg" alt="">
+        </button>
+    </div>
+    <div id="toggle-container"><p id="themetoggle" title="Switch to light mode">🌙</p> </div>
+</div>
+
+<div id="loading-text">
+    <p id="progress-caption"></p>
+    <p id="progress-text">0</p>
+    <p>%</p>
+</div>
+
+<div id="ifc-tree-menu" class="ifc-tree-menu hidden">
+    <ul id="myUL">
+        <li id="tree-root">
+        </li>
+    </ul>
+</div>
+
+<div id="sidebar-content-container" class="hidden">
+    <div id="property-root" class="ifc-property-menu "></div>
+</div>
+
+<div id="footer">
+    <div id="instruction-text" class="hidden">test</div>
+    <div id="coordinates-bar" class="hidden">
+        <div class="coordinates-text">
+            <h2 class="left">X =</h2>
+            <h2 class="right" id="x"></h2>
+        </div>
+        <div class="coordinates-text">
+            <h2 class="left">Y =</h2>
+            <h2 class="right" id="y"></h2>
+        </div>
+        <div class="coordinates-text">
+            <h2 class="left">Z =</h2>
+            <h2 class="right" id="z"></h2>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    window.startIfcJs();
+    document.getElementById('openFileLink').addEventListener('click', function () {
+        let inputElement = document.createElement('input');
+        inputElement.type = 'file';
+        inputElement.accept = '.ifc';
+
+        inputElement.addEventListener('change', function () {
+            if (inputElement.files.length > 0) {
+                let selectedFile = inputElement.files[0];
+                loadIfc(URL.createObjectURL(selectedFile), false);
+            }
+        });
+
+        inputElement.click();
+    });
+
+    function openFileDialog() {
+        let link = document.getElementById('openFileLink')
+        if (link) {
+            link.click();
+        } else {
+            console.error('Element with id "link" not found.');
+        }
+    }
+
+</script>
+
+@code {
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += LocationChanged;
+        base.OnInitialized();
+        ShareState.PropertyChanged += OnShareStateChanged;
+    }
+
+    void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        NavigationManager.NavigateTo(e.Location, forceLoad: true);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+    }
+
+    private async void OnShareStateChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        await JSRuntime.InvokeVoidAsync("openFileDialog");
+    }
+
+    public void Dispose()
+    {
+        ShareState.PropertyChanged -= OnShareStateChanged;
+    }
+}
