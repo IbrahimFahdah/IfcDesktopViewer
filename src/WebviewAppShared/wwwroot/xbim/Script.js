@@ -52,7 +52,7 @@ function unload(id) {
     viewer.draw();
 }
 
-window.openFileDialog2 = function () {
+window.openFileDialog = function () {
 
     let link = document.getElementById('openFileLink');
     if (link) {
