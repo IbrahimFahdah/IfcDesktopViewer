@@ -10,11 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDesktopTest", "src\BlazorDesktopTest\BlazorDesktopTest.csproj", "{C6B7D1EA-7D0E-40B5-A40B-9E9E06D742AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFCjsWinFormsApp", "src\BlazorWinFormsApp\IFCjsWinFormsApp.csproj", "{1E50A9F1-F632-4A37-8E74-BE9C51FA477C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebviewAppShared", "src\WebviewAppShared\WebviewAppShared.csproj", "{12433B36-02DA-4530-B233-621F75E0D517}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFCjsWpfApp", "src\BlazorWpfApp\IFCjsWpfApp.csproj", "{EDE8422E-984D-493F-B171-4DA13DDC8209}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{ABAB7A61-DAB6-4081-9B90-D2D6EC40AAF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xBIMWpfApp", "src\xBIMWpfApp\xBIMWpfApp.csproj", "{2A4290F2-966C-4444-A166-559DE6A21D5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFCjsWinFormsApp", "src\IFCjsWinFormsApp\IFCjsWinFormsApp.csproj", "{8157C3C8-1DCC-48FB-A05B-3902548884F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7CBF06F2-7EFE-4386-AB16-283211046E98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,21 +30,26 @@ Global
 		{C6B7D1EA-7D0E-40B5-A40B-9E9E06D742AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6B7D1EA-7D0E-40B5-A40B-9E9E06D742AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6B7D1EA-7D0E-40B5-A40B-9E9E06D742AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E50A9F1-F632-4A37-8E74-BE9C51FA477C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E50A9F1-F632-4A37-8E74-BE9C51FA477C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E50A9F1-F632-4A37-8E74-BE9C51FA477C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E50A9F1-F632-4A37-8E74-BE9C51FA477C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{12433B36-02DA-4530-B233-621F75E0D517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12433B36-02DA-4530-B233-621F75E0D517}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12433B36-02DA-4530-B233-621F75E0D517}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12433B36-02DA-4530-B233-621F75E0D517}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDE8422E-984D-493F-B171-4DA13DDC8209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDE8422E-984D-493F-B171-4DA13DDC8209}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDE8422E-984D-493F-B171-4DA13DDC8209}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDE8422E-984D-493F-B171-4DA13DDC8209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A4290F2-966C-4444-A166-559DE6A21D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A4290F2-966C-4444-A166-559DE6A21D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A4290F2-966C-4444-A166-559DE6A21D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A4290F2-966C-4444-A166-559DE6A21D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8157C3C8-1DCC-48FB-A05B-3902548884F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8157C3C8-1DCC-48FB-A05B-3902548884F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8157C3C8-1DCC-48FB-A05B-3902548884F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8157C3C8-1DCC-48FB-A05B-3902548884F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C6B7D1EA-7D0E-40B5-A40B-9E9E06D742AF} = {7CBF06F2-7EFE-4386-AB16-283211046E98}
+		{2A4290F2-966C-4444-A166-559DE6A21D5B} = {ABAB7A61-DAB6-4081-9B90-D2D6EC40AAF7}
+		{8157C3C8-1DCC-48FB-A05B-3902548884F3} = {ABAB7A61-DAB6-4081-9B90-D2D6EC40AAF7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83E26756-FC19-479A-9074-C74CC45932CF}

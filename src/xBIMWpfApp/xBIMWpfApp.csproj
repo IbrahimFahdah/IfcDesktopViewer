@@ -5,21 +5,13 @@
 		<OutputType>WinExe</OutputType>
 		<UseWPF>true</UseWPF>
 		<IsShippingPackage>false</IsShippingPackage>
-		<ApplicationIcon>ifcjs.ico</ApplicationIcon>
+		<ApplicationIcon>XbimIcon.ico</ApplicationIcon>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Remove="Pages\**" />
-		<Content Remove="Pages\**" />
-		<EmbeddedResource Remove="Pages\**" />
-		<None Remove="Pages\**" />
-		<Page Remove="Pages\**" />
-	</ItemGroup>
-
 
 	<ItemGroup>
-		<Resource Include="ifcjs.ico" />
+		<Resource Include="XbimIcon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -37,7 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Properties\" />
+		<Folder Include="Properties\" />
 	</ItemGroup>
 
 </Project>

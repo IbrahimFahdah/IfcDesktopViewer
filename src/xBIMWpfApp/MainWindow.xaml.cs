@@ -2,7 +2,7 @@ using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using WebviewAppShared;
 
-namespace IFCjsWpfApp
+namespace xBIMWpfApp
 {
     public partial class MainWindow : Window
     {

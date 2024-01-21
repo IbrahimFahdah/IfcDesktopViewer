@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 
-namespace IFCjsWpfApp
+namespace xBIMWpfApp
 {
     public partial class App : Application
     {

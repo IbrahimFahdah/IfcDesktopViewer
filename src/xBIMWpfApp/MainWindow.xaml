@@ -1,13 +1,13 @@
-<Window x:Class="IFCjsWpfApp.MainWindow"
+<Window x:Class="xBIMWpfApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:shared="clr-namespace:WebviewAppShared;assembly=WebviewAppShared"
-        xmlns:local="clr-namespace:IFCjsWpfApp"
+        xmlns:local="clr-namespace:xBIMWpfApp"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         mc:Ignorable="d"
-        Icon="ifcjs.ico"
+        Icon="XbimIcon.ico"
         Title="IFCjs Desktop Viewer" WindowState="Maximized" Height="84" Width="178">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
