@@ -6,70 +6,14 @@
 @using System.ComponentModel;
 @implements IDisposable
 
+
+<aside class="side-menu" id="side-menu-left"></aside>
 <div id="viewer-container"></div>
-
-<div id="header">
-    <a class="title button" id="openFileLink" title="Open IFC Model">Load Model</a>
-    <div id="toolbar">
-        <button id="picker-button" class="button" title="Highlight Elements">
-            <img src="_content/WebviewAppShared/ifcjs/images/pointer.svg" alt="">
-        </button>
-        <button id="model-tree-button" class="button" title="Model Tree">
-            <img src="_content/WebviewAppShared/ifcjs/images/modeltree.svg" alt="">
-        </button>
-        <button id="first-person-button" class="button" title="First Person Camera">
-            <img src="_content/WebviewAppShared/ifcjs/images/fps.svg" alt="">
-        </button>
-        <button id="clipper-button" class="button" title="Section Plane">
-            <img src="_content/WebviewAppShared/ifcjs/images/clipper.svg" alt="">
-        </button>
-        <button id="dimension-button" class="button" title="Dimension">
-            <img src="_content/WebviewAppShared/ifcjs/images/ruler.svg" alt="">
-        </button>
-        <button id="floorplan-button" class="button" title="Floor Plan View">
-            <img src="_content/WebviewAppShared/ifcjs/images/floorplan.svg" alt="">
-        </button>
-    </div>
-    <div id="toggle-container"><p id="themetoggle" title="Switch to light mode">🌙</p> </div>
+<div id="loading-overlay" class="loading-overlay hidden">
+    <h1 id="loading-progress" class="loading-progress"></h1>
 </div>
-
-<div id="loading-text">
-    <p id="progress-caption"></p>
-    <p id="progress-text">0</p>
-    <p>%</p>
-</div>
-
-<div id="ifc-tree-menu" class="ifc-tree-menu hidden">
-    <ul id="myUL">
-        <li id="tree-root">
-        </li>
-    </ul>
-</div>
-
-<div id="sidebar-content-container" class="hidden">
-    <div id="property-root" class="ifc-property-menu "></div>
-</div>
-
-<div id="footer">
-    <div id="instruction-text" class="hidden">test</div>
-    <div id="coordinates-bar" class="hidden">
-        <div class="coordinates-text">
-            <h2 class="left">X =</h2>
-            <h2 class="right" id="x"></h2>
-        </div>
-        <div class="coordinates-text">
-            <h2 class="left">Y =</h2>
-            <h2 class="right" id="y"></h2>
-        </div>
-        <div class="coordinates-text">
-            <h2 class="left">Z =</h2>
-            <h2 class="right" id="z"></h2>
-        </div>
-    </div>
-</div>
-
-
-<script src="_content/WebviewAppShared/ifcjs/JavaScript1.js"></script>
+<script src="_content/WebviewAppShared/ifcjs/main.js"></script>
+<script src="_content/WebviewAppShared/ifcjs/common.js"></script>
 
 @code {
 
