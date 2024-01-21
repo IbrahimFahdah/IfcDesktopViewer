@@ -1,4 +1,4 @@
-name: Build and Release WinForms App
+name: Build and Release WinForms/WPF App
 
 on:
   push:
@@ -13,16 +13,24 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Create Standalone Executable
+    - name: Create Standalone winform Executable
       run: |
-        dotnet publish -c Release -r win-x64 -o ./output
+        dotnet publish src/BlazorWinFormsApp/IFCjsWinFormsApp.csproj -c Release -r win-x64 -o ./output/winform
 
-    - name: Zip Artifacts
+    - name: Create Standalone wpf Executable
+      run: |
+        dotnet publish src/BlazorWpfApp/IFCjsWpfApp.csproj -c Release -r win-x64 -o ./output/Wpf
+        
+    - name: Zip winform Artifacts
       run: |
         Add-Type -AssemblyName System.IO.Compression.FileSystem
-        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output', 'WinFormsApp.zip')
+        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/winform', 'WinFormsApp.zip')
+
+    - name: Zip wpf Artifacts
+      run: |
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/Wpf', 'Wpf.zip')
         
- 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -35,7 +43,7 @@ jobs:
           Changes in this release.
 
     - name: Upload Release Asset
-      id: upload-release-asset
+      id: upload-winform-release-asset
       uses: actions/upload-release-asset@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token    
@@ -43,4 +51,15 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./WinFormsApp.zip
         asset_name: WinFormsApp.zip
+        asset_content_type: application/zip
+
+    - name: Upload wpf Release Asset
+      id: upload-wpf-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token    
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./WpfApp.zip
+        asset_name: WpfApp.zip
         asset_content_type: application/zip
