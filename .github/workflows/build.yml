@@ -29,7 +29,7 @@ jobs:
     - name: Zip wpf Artifacts
       run: |
         Add-Type -AssemblyName System.IO.Compression.FileSystem
-        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/Wpf', 'Wpf.zip')
+        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/Wpf', 'WpfApp.zip')
         
     - name: Create Release
       id: create_release
