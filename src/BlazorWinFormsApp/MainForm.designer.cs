@@ -39,10 +39,10 @@ namespace IFCjsWinFormsApp
             // blazorWebView1
             // 
             blazorWebView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            blazorWebView1.Location = new System.Drawing.Point(0, 33);
-            blazorWebView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            blazorWebView1.Location = new System.Drawing.Point(0, 24);
+            blazorWebView1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             blazorWebView1.Name = "blazorWebView1";
-            blazorWebView1.Size = new System.Drawing.Size(2133, 803);
+            blazorWebView1.Size = new System.Drawing.Size(1493, 478);
             blazorWebView1.TabIndex = 20;
             // 
             // menuStrip1
@@ -51,7 +51,8 @@ namespace IFCjsWinFormsApp
             menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new System.Drawing.Size(2133, 33);
+            menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            menuStrip1.Size = new System.Drawing.Size(1493, 24);
             menuStrip1.TabIndex = 21;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -59,29 +60,30 @@ namespace IFCjsWinFormsApp
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadModelToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
             fileToolStripMenuItem.Text = "File";
             // 
             // loadModelToolStripMenuItem
             // 
             loadModelToolStripMenuItem.Name = "loadModelToolStripMenuItem";
-            loadModelToolStripMenuItem.Size = new System.Drawing.Size(209, 34);
+            loadModelToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             loadModelToolStripMenuItem.Text = "Load Model";
             loadModelToolStripMenuItem.Click += LoadModelToolStripMenuItem_Click;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(2133, 836);
+            ClientSize = new System.Drawing.Size(1493, 502);
             Controls.Add(blazorWebView1);
             Controls.Add(menuStrip1);
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
-            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             Name = "MainForm";
             Text = "IFCjs Desktop viewer";
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            Load += MainForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

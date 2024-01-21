@@ -1,5 +1,5 @@
 ﻿
-// Script to include in the template
+
 
 var showEntityPropsOnHover;
 var lastHoverPick;
@@ -20,7 +20,7 @@ var secStartXtranslated;
 var secStartYtranslated;
 var secStartZtranslated;
 var lengthX, lengthY, lengthZ;
-
+var modelId;
 const viewer = new Viewer("viewer");
 viewer.background = [0, 0, 0, 0];
 var cube = new NavigationCube();
@@ -30,6 +30,38 @@ cube.ratio = 0.08;
 viewer.addPlugin(cube);
 viewer.hoverPickEnabled = true;
 const envelope = baseToBlob(modelgeo);
+
+document.getElementById('openFileLink').addEventListener('click', function () {
+    let inputElement = document.createElement('input');
+    inputElement.type = 'file';
+    inputElement.accept = '.wexBIM';
+
+    inputElement.addEventListener('change', function () {
+        if (inputElement.files.length > 0) {
+            let selectedFile = inputElement.files[0];
+            unload(modelId);
+            viewer.loadAsync(selectedFile, false);
+        }
+    });
+
+    inputElement.click();
+});
+
+function unload(id) {
+    viewer.unload(id);
+    viewer.draw();
+}
+
+window.openFileDialog2 = function () {
+
+    let link = document.getElementById('openFileLink');
+    if (link) {
+        link.click();
+    } else {
+        alert('Element with id "link" not found.');
+        console.error('Element with id "link" not found.');
+    }
+};
 
 //splitInstance = Split(['#attrprop-container', '#viewer-container'], {
 //    sizes: [25, 75],
@@ -70,6 +102,7 @@ viewer.on("hoverpick", function (arg) {
 
 viewer.on('loaded', args => {
     try {
+        modelId = args.model;
         viewer.start();
         viewer.show(ViewType.DEFAULT, null, null, false);
 

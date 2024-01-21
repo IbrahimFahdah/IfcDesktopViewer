@@ -22,6 +22,11 @@
 	</ItemGroup>
 
 
+	<ItemGroup>
+	  <Folder Include="Pages\ifcjs\" />
+	</ItemGroup>
+
+
 
 
 

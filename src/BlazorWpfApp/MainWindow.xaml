@@ -15,7 +15,7 @@
                 <MenuItem Header="Open Model" Click="OpenModel_Click"/>
             </MenuItem>
         </Menu>
-        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}" StartPath="/xbim">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" ComponentType="{x:Type shared:App}" />
             </blazor:BlazorWebView.RootComponents>
