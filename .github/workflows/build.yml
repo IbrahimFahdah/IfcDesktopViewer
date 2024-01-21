@@ -15,7 +15,7 @@ jobs:
 
     - name: Create Standalone Executable
       run: |
-        dotnet publish -c Release -r win10-x64 -o ./output
+        dotnet publish -c Release -r win-x64 -o ./output
 
     - name: Zip Artifacts
       run: |
