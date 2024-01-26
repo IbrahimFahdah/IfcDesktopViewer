@@ -7,7 +7,6 @@ update readme
 check web test app
  add tooltip wpf app
  xbim js minification
- xbim converter
 
 
 clean up

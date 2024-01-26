@@ -1,6 +1,4 @@
 ﻿
-
-
 var showEntityPropsOnHover;
 var lastHoverPick;
 var hovertimer;
@@ -29,7 +27,6 @@ cube.passiveAlpha = 0.8;
 cube.ratio = 0.08;
 viewer.addPlugin(cube);
 viewer.hoverPickEnabled = true;
-const envelope = baseToBlob(modelgeo);
 
 document.getElementById('openFileLink').addEventListener('click', function () {
     let inputElement = document.createElement('input');
@@ -70,29 +67,6 @@ window.clearModels = function () {
     modelIds = [];
     viewer.draw();
 };
-
-
-//splitInstance = Split(['#attrprop-container', '#viewer-container'], {
-//    sizes: [25, 75],
-//    minSize: [0, 0],
-//    gutterSize: 10,
-//    gutterAlign: 'Center',
-//    onDragEnd: function (sizes) {
-//        localStorage.setItem('split-sizes', JSON.stringify(sizes))
-//    }
-//});
-
-//unzipByteArray(base64ToByteArray(model))
-//    .then(jsonData => {
-//        entitiesExtendedData = getEntitiesExtendedData(JSON.parse(jsonData));
-//        buildModelTree();
-//    })
-//    .catch(error => {
-//        console.error('Error:', error);
-//    });
-
-
-/*viewer.loadAsync(envelope);*/
 
 viewer.on("hoverpick", function (arg) {
     if (arg && arg.model && arg.id) {
@@ -202,42 +176,6 @@ function showHoverPopup(allProps, pickedId, arg) {
     });
 }
 
-
-function buildModelTree() {
-
-    let modelTree = document.getElementById("modelTree")
-    html = '<ul id="myUL">';
-    let parent = entitiesExtendedData[Object.keys(entitiesExtendedData)[0]];
-    let childern = [];
-    addTreeNode(parent, childern);
-    html += '</ul >';
-    /* modelTree.innerHTML = html;*/
-
-    var toggler = document.getElementsByClassName("caret");
-    var i;
-
-    for (i = 0; i < toggler.length; i++) {
-        toggler[i].addEventListener("click", function () {
-            this.parentElement.querySelector(".nested").classList.toggle("active");
-            this.classList.toggle("caret-down");
-        });
-    }
-}
-
-function addTreeNode(parent, childern) {
-    if (parent && parent.Children && parent.Children.length > 0) {
-        html += '<li><span class="caret">' + parent.Name + '</span>';
-        html += '<ul class="nested">';
-        parent.Children.forEach(function (child) {
-            childern.push(child.Id);
-            addTreeNode(child, childern, html);
-        });
-        html += '</ul ></li>';
-    }
-    else {
-        html += '<li>' + parent.Name + '</li>';
-    }
-}
 
 function applyModelVisibility() {
 
@@ -388,40 +326,6 @@ function getChildrenUsingIfcData(parent, childern) {
     }
 }
 
-function base64ToByteArray(base64) {
-    const binaryString = atob(base64);
-    const byteArray = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-        byteArray[i] = binaryString.charCodeAt(i);
-    }
-    return byteArray;
-}
-
-function baseToBlob(data) {
-    // convert base64 to raw binary data held in a string
-    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-    var byteString = atob(data);
-
-    // write the bytes of the string to an ArrayBuffer
-    var ab = new ArrayBuffer(byteString.length);
-    var ia = new Uint8Array(ab);
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-
-    return new Blob([ia]);
-}
-
-async function unzipByteArray(byteArray) {
-    const zip = new JSZip();
-    const unzippedData = await zip.loadAsync(byteArray);
-
-    // Access the JSON content from a file inside the ZIP
-    const jsonContent = await unzippedData.files["data.json"].async('text');
-
-    return jsonContent;
-}
-
 function getEntitiesExtendedData(data) {
     let entitiesExtendedData = data.EntitiesExtendedData;
     if (!entitiesExtendedData) {
@@ -449,7 +353,6 @@ function getEntitiesExtendedData(data) {
 
     return result;
 };
-
 
 function removeSvg() {
 }
