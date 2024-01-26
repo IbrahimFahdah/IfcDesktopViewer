@@ -12,7 +12,9 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File" >
-                <MenuItem Header="Open Model" Click="OpenModel_Click"/>
+                <MenuItem Header="Open wexBIM" Click="OpenModel_Click"/>
+                <MenuItem Header="Unload Models" Click="UnLoadModels_Click"/>
+                <MenuItem Header="Generate xBIM wexBIM from IFC" Click="GenerateWexBIM_Click"/>
             </MenuItem>
         </Menu>
         <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}" StartPath="/xbim">

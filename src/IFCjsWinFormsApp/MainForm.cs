@@ -38,10 +38,9 @@ namespace IFCjsWinFormsApp
             shareState.ShowFileDialog();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void unloadModelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
+            shareState.ClearModels();
         }
     }
 }

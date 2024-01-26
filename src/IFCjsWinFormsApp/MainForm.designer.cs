@@ -33,6 +33,7 @@ namespace IFCjsWinFormsApp
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             loadModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            unloadModelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -43,6 +44,7 @@ namespace IFCjsWinFormsApp
             blazorWebView1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             blazorWebView1.Name = "blazorWebView1";
             blazorWebView1.Size = new System.Drawing.Size(1493, 478);
+            blazorWebView1.StartPath = "/";
             blazorWebView1.TabIndex = 20;
             // 
             // menuStrip1
@@ -58,7 +60,7 @@ namespace IFCjsWinFormsApp
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadModelToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadModelToolStripMenuItem, unloadModelsToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
             fileToolStripMenuItem.Text = "File";
@@ -66,9 +68,16 @@ namespace IFCjsWinFormsApp
             // loadModelToolStripMenuItem
             // 
             loadModelToolStripMenuItem.Name = "loadModelToolStripMenuItem";
-            loadModelToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            loadModelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             loadModelToolStripMenuItem.Text = "Load Model";
             loadModelToolStripMenuItem.Click += LoadModelToolStripMenuItem_Click;
+            // 
+            // unloadModelsToolStripMenuItem
+            // 
+            unloadModelsToolStripMenuItem.Name = "unloadModelsToolStripMenuItem";
+            unloadModelsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            unloadModelsToolStripMenuItem.Text = "Unload Models";
+            unloadModelsToolStripMenuItem.Click += unloadModelsToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -83,7 +92,6 @@ namespace IFCjsWinFormsApp
             Name = "MainForm";
             Text = "IFCjs Desktop viewer";
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            Load += MainForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -95,5 +103,6 @@ namespace IFCjsWinFormsApp
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadModelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unloadModelsToolStripMenuItem;
     }
 }

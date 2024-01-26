@@ -20,7 +20,7 @@ var secStartXtranslated;
 var secStartYtranslated;
 var secStartZtranslated;
 var lengthX, lengthY, lengthZ;
-var modelId;
+var modelIds = [];
 const viewer = new Viewer("viewer");
 viewer.background = [0, 0, 0, 0];
 var cube = new NavigationCube();
@@ -39,7 +39,7 @@ document.getElementById('openFileLink').addEventListener('click', function () {
     inputElement.addEventListener('change', function () {
         if (inputElement.files.length > 0) {
             let selectedFile = inputElement.files[0];
-            unload(modelId);
+            //unload(modelId);
             viewer.loadAsync(selectedFile, false);
         }
     });
@@ -63,6 +63,15 @@ window.openFileDialog = function () {
     }
 };
 
+window.clearModels = function () {
+    modelIds.forEach(function (item, index) {
+        viewer.unload(item);
+    });
+    modelIds = [];
+    viewer.draw();
+};
+
+
 //splitInstance = Split(['#attrprop-container', '#viewer-container'], {
 //    sizes: [25, 75],
 //    minSize: [0, 0],
@@ -83,7 +92,7 @@ window.openFileDialog = function () {
 //    });
 
 
-viewer.loadAsync(envelope);
+/*viewer.loadAsync(envelope);*/
 
 viewer.on("hoverpick", function (arg) {
     if (arg && arg.model && arg.id) {
@@ -102,10 +111,9 @@ viewer.on("hoverpick", function (arg) {
 
 viewer.on('loaded', args => {
     try {
-        modelId = args.model;
+        modelIds.push(args.model);
         viewer.start();
         viewer.show(ViewType.DEFAULT, null, null, false);
-
         getStartBboxCoordinates();
         $("#clippingopt button").button();
         $("#slider-sec-x").slider({

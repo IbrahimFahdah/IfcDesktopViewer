@@ -96,7 +96,10 @@
 
     private async void OnShareStateChanged(object? sender, PropertyChangedEventArgs e)
     {
-        await JSRuntime.InvokeVoidAsync("window.openFileDialog");
+        if (e.PropertyName == nameof(ShareState.ShowFileDialog))
+            await JSRuntime.InvokeVoidAsync("window.openFileDialog");
+        if (e.PropertyName == nameof(ShareState.ClearModels))
+            await JSRuntime.InvokeVoidAsync("window.clearModels");
     }
 
     public void Dispose()
