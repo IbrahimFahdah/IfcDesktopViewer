@@ -12,21 +12,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlazorDesktopTest</title>
     <base href="~/" />
-@*     <link rel="stylesheet" href="_content/WebviewAppShared/css/bootstrap/bootstrap.min.css" />
-    <link href="_content/WebviewAppShared/css/site.css" rel="stylesheet" /> *@
+
     <link href="BlazorDesktopTest.styles.css" rel="stylesheet" />
+    @*Testing IFCjs. localhost/ifcjs *@
     <link href="_content/WebviewAppShared/ifcjs/styles.css" rel="stylesheet" />
     <script src="_content/WebviewAppShared/ifcjs/main.js"></script>
     <script src="_content/WebviewAppShared/ifcjs/common.js"></script>
-@*     <link href="_content/WebviewAppShared/xbim/jquery-ui.min.css" rel="stylesheet" />
+
+@*Testing xBIM localhost/xbim *@
+@*  <link href="_content/WebviewAppShared/xbim/jquery-ui.min.css" rel="stylesheet" />
     <link href="_content/WebviewAppShared/xbim/xbim-styles.css" rel="stylesheet" />
+    <script src="_content/WebviewAppShared/xbim/jszip.min.js"></script>
+    <script src="_content/WebviewAppShared/xbim/jquery-3.7.1.min.js"></script>
+    <script src="_content/WebviewAppShared/xbim/jquery-ui.min.js"></script>
+    <script src="_content/WebviewAppShared/xbim/split.min.js"></script>
     <script src="_content/WebviewAppShared/xbim/viewer.js"></script> *@
 </head>
 <body>
 
     <component type="typeof(WebviewAppShared.App)" render-mode="Server" />
 
-@*     <div id="blazor-error-ui">
+    <div id="blazor-error-ui">
         <environment include="Staging,Production">
             An error has occurred. This application may no longer respond until reloaded.
         </environment>
@@ -35,7 +41,7 @@
         </environment>
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
-    </div> *@
+    </div>
 
     <script src="_framework/blazor.server.js"></script>
 </body>

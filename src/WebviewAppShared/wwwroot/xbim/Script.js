@@ -71,12 +71,6 @@ window.clearModels = function () {
 viewer.on("hoverpick", function (arg) {
     if (arg && arg.model && arg.id) {
         clearTimeout(hovertimer);
-        let callback = function () {
-            let allProps = entitiesExtendedData[arg.id];
-            showHoverPopup(allProps, arg.id, arg)
-        }
-
-        hovertimer = setTimeout(callback, 200);
     }
     else {
         clearTimeout(hovertimer);
