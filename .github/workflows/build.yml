@@ -24,12 +24,12 @@ jobs:
     - name: Zip winform Artifacts
       run: |
         Add-Type -AssemblyName System.IO.Compression.FileSystem
-        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/winform', 'WinFormsApp.zip')
+        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/winform', 'IFCjsWinFormsApp.zip')
 
     - name: Zip wpf Artifacts
       run: |
         Add-Type -AssemblyName System.IO.Compression.FileSystem
-        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/Wpf', 'WpfApp.zip')
+        [System.IO.Compression.ZipFile]::CreateFromDirectory('./output/Wpf', 'xBIMWpfApp.zip')
         
     - name: Create Release
       id: create_release
@@ -49,8 +49,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token    
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./WinFormsApp.zip
-        asset_name: WinFormsApp.zip
+        asset_path: ./IFCjsWinFormsApp.zip
+        asset_name: IFCjsWinFormsApp.zip
         asset_content_type: application/zip
 
     - name: Upload wpf Release Asset
@@ -60,6 +60,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token    
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./WpfApp.zip
-        asset_name: WpfApp.zip
+        asset_path: ./xBIMWpfApp.zip
+        asset_name: xBIMWpfApp.zip
         asset_content_type: application/zip
