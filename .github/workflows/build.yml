@@ -15,11 +15,11 @@ jobs:
 
     - name: Create Standalone winform Executable
       run: |
-        dotnet publish src/BlazorWinFormsApp/IFCjsWinFormsApp.csproj --sc -c Release -r win-x64 -o ./output/winform
+        dotnet publish src/IFCjsWinFormsApp/IFCjsWinFormsApp.csproj --sc -c Release -r win-x64 -o ./output/winform
 
     - name: Create Standalone wpf Executable
       run: |
-        dotnet publish src/BlazorWpfApp/IFCjsWpfApp.csproj --sc -c Release -r win-x64 -o ./output/Wpf
+        dotnet publish src/xBIMWpfApp/xBIMWpfApp.csproj --sc -c Release -r win-x64 -o ./output/Wpf
         
     - name: Zip winform Artifacts
       run: |
