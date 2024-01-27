@@ -1,12 +1,10 @@
 using System;
 using System.Windows.Forms;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.WebView;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using WebviewAppShared;
-using static System.Formats.Asn1.AsnWriter;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace IFCjsWinFormsApp
@@ -28,7 +26,10 @@ namespace IFCjsWinFormsApp
             blazorWebView1.Services = _serviceCollection.BuildServiceProvider();
             blazorWebView1.RootComponents.Add<App>("#app");
             blazorWebView1.StartPath = "/ifcjs";
+
+            shareState.PropertyChanged += ShareState_PropertyChanged;
         }
+
 
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
@@ -41,6 +42,26 @@ namespace IFCjsWinFormsApp
         private void unloadModelsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             shareState.ClearModels();
+        }
+
+        private void ShareState_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ShareState.PropertyList))
+            {
+                lsProList.Items.Clear();
+
+                foreach (var pair in shareState.PropertyList)
+                {
+                    ListViewItem item = new ListViewItem(pair.Key);
+                    item.SubItems.Add(pair.Value.ToString());
+                    lsProList.Items.Add(item);
+                }
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

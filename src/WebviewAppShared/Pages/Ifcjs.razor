@@ -12,10 +12,30 @@
 <div id="loading-overlay" class="loading-overlay hidden">
     <h1 id="loading-progress" class="loading-progress"></h1>
 </div>
+
+<script>
+    class NetHelpers {
+        static dotNetHelper;
+
+        static setDotNetHelper(value) {
+            NetHelpers.dotNetHelper = value;
+        }
+
+        static async setPropertyList(value) {
+            const msg =
+                await NetHelpers.dotNetHelper.invokeMethodAsync('SetPropertyList', value);
+        }
+    }
+
+    window.NetHelpers = NetHelpers;
+</script>
+
 <script src="_content/WebviewAppShared/ifcjs/main.js"></script>
 <script src="_content/WebviewAppShared/ifcjs/common.js"></script>
 
 @code {
+
+    private DotNetObjectReference<Ifcjs>? dotNetHelper;
 
     protected override void OnInitialized()
     {
@@ -31,14 +51,26 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (firstRender)
+        {
+            dotNetHelper = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync("NetHelpers.setDotNetHelper",
+                dotNetHelper);
+        }
     }
 
     private async void OnShareStateChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName==nameof(ShareState.ShowFileDialog))
-           await JSRuntime.InvokeVoidAsync("window.openFileDialog");
+            await JSRuntime.InvokeVoidAsync("window.openFileDialog");
         if (e.PropertyName == nameof(ShareState.ClearModels))
             await JSRuntime.InvokeVoidAsync("window.clearModels");
+    }
+
+    [JSInvokable]
+    public void SetPropertyList(Dictionary<string, object> value)
+    {
+        ShareState.PropertyList=value;
     }
 
     public void Dispose()
