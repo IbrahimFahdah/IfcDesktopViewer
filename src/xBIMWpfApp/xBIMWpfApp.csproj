@@ -34,4 +34,12 @@
 		<Folder Include="Properties\" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<XbimInteropFiles Remove="Xbim.Geometry.Engine32.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<XbimInteropFiles Remove="Xbim.Geometry.Engine64.dll" />
+	</ItemGroup>
+
 </Project>
