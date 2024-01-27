@@ -36,7 +36,6 @@ document.getElementById('openFileLink').addEventListener('click', function () {
     inputElement.addEventListener('change', function () {
         if (inputElement.files.length > 0) {
             let selectedFile = inputElement.files[0];
-            //unload(modelId);
             viewer.loadAsync(selectedFile, false);
         }
     });
@@ -69,12 +68,6 @@ window.clearModels = function () {
 };
 
 viewer.on("hoverpick", function (arg) {
-    if (arg && arg.model && arg.id) {
-        clearTimeout(hovertimer);
-    }
-    else {
-        clearTimeout(hovertimer);
-    }
 });
 
 viewer.on('loaded', args => {
@@ -200,30 +193,6 @@ function applyModelVisibility() {
                 viewer.setState(State.HIDDEN, type);
             }
             break;
-
-        case "hideFloor":
-        case "isolateFloor":
-            if (modelVisibilityaction == "isolateFloor") {
-                hideModel();
-            }
-
-            let floorEntities = [];
-            for (let id in modelVisibilitySelections) {
-                let model = modelVisibilitySelections[id].model;
-                let floorId = getParentFloorId(id);
-                if (floorId > 0) {
-                    getAllChildren(floorId, floorEntities);
-                    if (modelVisibilityaction == "isolateFloor") {
-                        viewer.resetState(floorEntities, model);
-                    }
-                    else {
-                        viewer.setState(State.HIDDEN, floorEntities, model);
-                    }
-                    viewer.setState(State.HIDDEN, ProductType.IFCSPACE);
-                    viewer.setState(State.HIDDEN, ProductType.IFCGRID);
-                }
-            }
-            break;
     }
 
     let viewerEle = document.getElementById("viewer-container");
@@ -285,29 +254,6 @@ function getAllChildren(parentid, childern) {
         let parent = entitiesExtendedData[parentid];
         getChildrenUsingIfcData(parent, childern);
     }
-}
-
-function getParentFloorId(enId) {
-    return getParentFloorIdUsingIfcData(enId);
-}
-
-function getParentFloorIdUsingIfcData(enId) {
-
-    let dic = entitiesExtendedData;
-    if (!dic)
-        return -1;
-
-    for (const key in entitiesExtendedData) {
-        let en = dic[key];
-        if (parseInt(key) == enId) {
-            if (en.PType.toUpperCase() == "IFCBUILDINGSTOREY") {
-                return en.PId;
-            }
-            return getParentFloorIdUsingIfcData(en.PId);
-        }
-    }
-
-    return -1;
 }
 
 function getChildrenUsingIfcData(parent, childern) {

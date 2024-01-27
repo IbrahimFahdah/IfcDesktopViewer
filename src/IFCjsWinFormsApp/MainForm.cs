@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
 using WebviewAppShared;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace IFCjsWinFormsApp
@@ -57,11 +56,6 @@ namespace IFCjsWinFormsApp
                     lsProList.Items.Add(item);
                 }
             }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

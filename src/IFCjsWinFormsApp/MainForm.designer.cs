@@ -150,7 +150,6 @@ namespace IFCjsWinFormsApp
             Name = "MainForm";
             Text = "IFCjs Desktop viewer";
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            Load += MainForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);
