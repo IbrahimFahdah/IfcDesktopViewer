@@ -9,6 +9,10 @@
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<None Remove="Xbim.Geometry.Engine64.dll" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<Resource Include="XbimIcon.ico" />
@@ -40,6 +44,12 @@
 
 	<ItemGroup>
 		<XbimInteropFiles Remove="Xbim.Geometry.Engine64.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+			  <None Remove="Xbim.Geometry.Engine32.dll" />
+	  <Content Include="Xbim.Geometry.Engine32.dll" />
+<Content Include="Xbim.Geometry.Engine64.dll" />
 	</ItemGroup>
 
 </Project>
