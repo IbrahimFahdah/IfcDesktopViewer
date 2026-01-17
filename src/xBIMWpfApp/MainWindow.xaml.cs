@@ -47,7 +47,7 @@ namespace xBIMWpfApp
                 using (var model = IfcStore.Open(filename))
                 {
                     var context = new Xbim3DModelContext(model);
-                    context.CreateContext(adjustWcs: false);
+                    context.CreateContext(adjustWcs: true);
 
                     var wexBimFilename = Path.ChangeExtension(filename, "wexBIM");
                     using (var wexBiMfile = File.Create(wexBimFilename))

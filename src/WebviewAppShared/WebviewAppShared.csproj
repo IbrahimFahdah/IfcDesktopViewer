@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="wwwroot\ifcjs\main.js~RF2c9105f.TMP" />
+		<Content Remove="wwwroot\ifcjs\main.js~RF2c9105f.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>
